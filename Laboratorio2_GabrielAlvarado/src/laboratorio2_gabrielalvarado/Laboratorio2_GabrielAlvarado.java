@@ -181,7 +181,7 @@ public class Laboratorio2_GabrielAlvarado {
                                        
                                 }
                             }
-                        }
+                        
                        
                     
                     if (opcion2.equalsIgnoreCase("b")) {
@@ -193,15 +193,15 @@ public class Laboratorio2_GabrielAlvarado {
 
                                 JOptionPane.showMessageDialog(null, "Bienvenido\n" + y.getUsuario());
 
-                                String cad = "";
-                                while (!cad.equalsIgnoreCase("d")) {
-                                    cad = JOptionPane.showInputDialog("MENU\n"
+                                String cad1 = "";
+                                while (!cad1.equalsIgnoreCase("d")) {
+                                    cad1 = JOptionPane.showInputDialog("MENU\n"
                                             + "a.Modificar informacion\n"
                                             + "b.Ver secciones\n"
                                             + "c.Lista Alumnos\n"
                                             + "d.Salir\n");
 
-                                    if (cad.equalsIgnoreCase("a")) {
+                                    if (cad1.equalsIgnoreCase("a")) {
 
                                         for (int i = 0; i < ListMaestro.size(); i++) {
                                             if (ListMaestro.get(i).getUsuario().equalsIgnoreCase(usuario2) && ListMaestro.get(i).getContraseña().equalsIgnoreCase(contrasena2)) {
@@ -255,5 +255,6 @@ public class Laboratorio2_GabrielAlvarado {
             }
         }
     }
+}
 }
 }
