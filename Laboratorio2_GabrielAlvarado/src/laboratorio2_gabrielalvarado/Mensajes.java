@@ -13,12 +13,16 @@ public class Mensajes {
     public String emisor;
     public String receptor;
     public int nivel;
+    public String mensaje;
 
-    public Mensajes(String emisor, String receptor, int nivel) {
+    public Mensajes(String emisor, String receptor, int nivel, String mensaje) {
         this.emisor = emisor;
         this.receptor = receptor;
         this.nivel = nivel;
+        this.mensaje = mensaje;
     }
+
+    
 
     public String getEmisor() {
         return emisor;
@@ -42,6 +46,14 @@ public class Mensajes {
 
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
     @Override

@@ -18,6 +18,9 @@ public class Laboratorio2_GabrielAlvarado {
     static ArrayList<Alumno> ListAlumno = new ArrayList();
     static ArrayList<Maestro> ListMaestro = new ArrayList();
     static ArrayList<Maestro> ListSecciones = new ArrayList();
+    static ArrayList<Mensajes> ListMensajes = new ArrayList();
+    static String UserGlobal;
+    static int pos;
 
     public static void main(String[] args) {
         String opcion1 = "";
@@ -102,13 +105,16 @@ public class Laboratorio2_GabrielAlvarado {
                                         + "a.Modificar usuario\n"
                                         + "b.Retirar Clases\n"
                                         + "c.Adicionar Clases\n"
-                                        + "d.Salir\n");
+                                        + "d.Mensajeria\n"
+                                        + "e.Salir\n");
 
                                 if (cad.equalsIgnoreCase("a")) {
 
                                     for (int i = 0; i < ListAlumno.size(); i++) {
                                         if (ListAlumno.get(i).getUsuario().equalsIgnoreCase(usuario) && ListAlumno.get(i).getContraseña().equalsIgnoreCase(contrasena)) {
                                             JOptionPane.showInputDialog("Entro");
+                                            pos = i;
+                                            UserGlobal = usuario;
 
                                             String nombre = JOptionPane.showInputDialog("Ingrese nombre");
                                             String cuenta = JOptionPane.showInputDialog("Ingrese cuenta");
@@ -130,7 +136,7 @@ public class Laboratorio2_GabrielAlvarado {
 
                                 }
                                 if (cad.equalsIgnoreCase("b")) {
-                                     String w = "";
+                                    String w = "";
 
                                     for (Clases b : ListClases) {
 
@@ -140,7 +146,7 @@ public class Laboratorio2_GabrielAlvarado {
                                     JOptionPane.showMessageDialog(null, w);
                                     int j = Integer.parseInt(JOptionPane.showInputDialog("Ingrese posicion"));
                                     for (Clases k : ListClases) {
-                                        k.getListClases().add(j, k);
+                                        k.getListClases().remove(j);
                                     }
 
                                 }
@@ -158,9 +164,26 @@ public class Laboratorio2_GabrielAlvarado {
                                         k.getListClases().add(j, k);
                                     }
                                 }
+                                if (cad.equalsIgnoreCase("d")) {
+                                    String mensaje = JOptionPane.showInputDialog("Ingrese mensaje");
+                                    int nivel = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de importancia"));
+                                    
+                                    
+                                    
+                                    String h = "";
+                                    for (Alumno l : ListAlumno) {
+                                        h += ListAlumno.indexOf(l) + "" + ((Alumno) l);
+                                    }
+                                    JOptionPane.showMessageDialog(null, h);
+                                    int a = Integer.parseInt(JOptionPane.showInputDialog("Elija a quien le envia el mensaje"));
+                                    ListAlumno.get(a).getListMensajes().add(new Mensajes(UserGlobal,ListAlumno.get(a).getNombre(),nivel,mensaje));
+                                        
+                                       
+                                }
                             }
                         }
-                    }
+                       
+                    
                     if (opcion2.equalsIgnoreCase("b")) {
                         for (Maestro y : ListMaestro) {
 
@@ -232,4 +255,5 @@ public class Laboratorio2_GabrielAlvarado {
             }
         }
     }
+}
 }
