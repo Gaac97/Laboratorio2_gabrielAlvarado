@@ -99,10 +99,28 @@ public class Alumno {
        ListClases.add(s);
     }
 
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public ArrayList<Mensajes> getListMensajes() {
+        return ListMensajes;
+    }
+
+    public void setListMensajes(ArrayList<Mensajes> ListMensajes) {
+        this.ListMensajes = ListMensajes;
+    }
+
     @Override
     public String toString() {
-        return "Alumno{" + "edad=" + edad + ", Usuario=" + Usuario + ", contrasena=" + contrasena + '}';
+        return "Alumno{" + "nombre=" + nombre + ", cuenta=" + cuenta + '}';
     }
+
+    
 
    
     

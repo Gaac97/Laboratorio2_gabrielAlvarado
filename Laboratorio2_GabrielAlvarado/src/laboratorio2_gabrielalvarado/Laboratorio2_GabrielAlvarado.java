@@ -17,6 +17,7 @@ public class Laboratorio2_GabrielAlvarado {
     static ArrayList<Clases> ListClases = new ArrayList();
     static ArrayList<Alumno> ListAlumno = new ArrayList();
     static ArrayList<Maestro> ListMaestro = new ArrayList();
+    static ArrayList<Maestro> ListSecciones = new ArrayList();
 
     public static void main(String[] args) {
         String opcion1 = "";
@@ -38,8 +39,8 @@ public class Laboratorio2_GabrielAlvarado {
                             + "b.Agregar Maestro\n"
                             + "c.Salir\n"
                     );
-                    if (op.equalsIgnoreCase("a")) {
-                        JOptionPane.showMessageDialog(null, "Clases");
+                    if (op.equalsIgnoreCase("b")) {
+                        JOptionPane.showMessageDialog(null, "Maestro");
                         String nombre = JOptionPane.showInputDialog("Ingrese nombre");
                         String maestria = JOptionPane.showInputDialog("Ingrese Maestria");
                         String titulo = JOptionPane.showInputDialog("Ingrese titulo");
@@ -48,16 +49,18 @@ public class Laboratorio2_GabrielAlvarado {
                         String Contraseña = JOptionPane.showInputDialog("Ingrese contraseña");
                         int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad"));
                         String clases = JOptionPane.showInputDialog("Ingrese clases");
-                        ListMaestro.add(new Maestro(nombre, titulo, salario, salario, Usuario, Contraseña, cantidad));
+                        ListMaestro.add(new Maestro(nombre, titulo, maestria, salario, Usuario, Contraseña, cantidad));
                     }
-                    if (op.equalsIgnoreCase("b")) {
-                        JOptionPane.showMessageDialog(null, "Maestro");
+                    if (op.equalsIgnoreCase("a")) {
+                        JOptionPane.showMessageDialog(null, "Clases");
                         String nombre = JOptionPane.showInputDialog("Ingrese nombre");
                         String seccion = JOptionPane.showInputDialog("Ingrese seccion");
                         int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de alumnos"));
                         String maestro = (JOptionPane.showInputDialog("Ingrese maestro"));
                         int unidades = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad de unidades"));
-
+                        for (Maestro r : ListSecciones) {
+                            r.getListClases().add(seccion);
+                        }
                         ListClases.add(new Clases(nombre, seccion, cantidad, maestro, unidades));
                     }
                 }
@@ -75,43 +78,100 @@ public class Laboratorio2_GabrielAlvarado {
                 ListAlumno.add(new Alumno(nombre, cuenta, carrera, edad, edad, Usuario, Contraseña));
 
             }
-        }
-
-        if (opcion1.equalsIgnoreCase("c")) {
-            JOptionPane.showMessageDialog(null, "Login");
             String opcion2 = "";
-            opcion2 = JOptionPane.showInputDialog("LOGIN\n"
-                    + "a.Iniciar Sesion Profesor\n"
-                    + "b.Iniciar Sesion Alumno\n");
-            if (opcion2.equalsIgnoreCase("a")) {
-                for (Alumno t : ListAlumno) {
+            if (opcion1.equalsIgnoreCase("c")) {
 
-                    String usuario = JOptionPane.showInputDialog("Ingrese usuario");
-                    String contrasena = JOptionPane.showInputDialog("Ingrese usuario");
-                    if (usuario.equalsIgnoreCase(t.getUsuario()) && contrasena.equalsIgnoreCase(t.getContraseña())) {
-                        JOptionPane.showMessageDialog(null, "Bienvenido" + t.getUsuario());
+                JOptionPane.showMessageDialog(null, "Login");
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+                opcion2 = JOptionPane.showInputDialog("LOGIN\n"
+                        + "a.Iniciar Sesion Alumno\n"
+                        + "b.Iniciar Sesion Maestro\n"
+                        + "c.Salir\n");
+                System.out.println(opcion2);
+                if (opcion2.equalsIgnoreCase("a")) {
+
+                    for (Alumno t : ListAlumno) {
+                        JOptionPane.showMessageDialog(null, "Login Alumno");
+                        String usuario = JOptionPane.showInputDialog("Ingrese usuario");
+                        String contrasena = JOptionPane.showInputDialog("Ingrese usuario");
+                        if (usuario.equalsIgnoreCase(t.getUsuario()) && contrasena.equalsIgnoreCase(t.getContraseña())) {
+                            JOptionPane.showMessageDialog(null, "Bienvenido" + t.getUsuario());
+                            String cad = "";
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+                        }
                     }
                 }
-            }
 
-            if (opcion2.equalsIgnoreCase("b")) {
-                for (Maestro t : ListMaestro) {
+                if (opcion2.equalsIgnoreCase("b")) {
+                    for (Maestro t : ListMaestro) {
 
-                    String usuario = JOptionPane.showInputDialog("Ingrese usuario");
-                    String contrasena = JOptionPane.showInputDialog("Ingrese usuario");
-                    if (usuario.equalsIgnoreCase(t.getUsuario()) && contrasena.equalsIgnoreCase(t.getContraseña())) {
-                        JOptionPane.showMessageDialog(null, "Bienvenido" + t.getUsuario());
+                        String usuario = JOptionPane.showInputDialog("Ingrese usuario");
+                        String contrasena = JOptionPane.showInputDialog("Ingrese usuario");
+                        if (usuario.equalsIgnoreCase(t.getUsuario()) && contrasena.equalsIgnoreCase(t.getContraseña())) {
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+                            JOptionPane.showMessageDialog(null, "Bienvenido\n" + t.getUsuario());
+
+                            String cad = "";
+                            while (!cad.equalsIgnoreCase("d")) {
+                                cad = JOptionPane.showInputDialog("MENU\n"
+                                        + "a.Modificar informacion\n"
+                                        + "b.Ver secciones\n"
+                                        + "c.Lista Alumnos\n"
+                                        + "d.Salir\n");
+
+                                if (cad.equalsIgnoreCase("a")) {
+
+                                    for (int i = 0; i < ListMaestro.size(); i++) {
+                                        if (ListMaestro.get(i).getUsuario().equalsIgnoreCase(usuario) && ListMaestro.get(i).getContraseña().equalsIgnoreCase(contrasena)) {
+                                            JOptionPane.showInputDialog("Entro");
+
+                                            String nombre = JOptionPane.showInputDialog("Ingrese nombre");
+                                            String maestria = JOptionPane.showInputDialog("Ingrese Maestria");
+                                            String titulo = JOptionPane.showInputDialog("Ingrese titulo");
+                                            String salario = (JOptionPane.showInputDialog("Ingrese salario"));
+                                            String Usuario = JOptionPane.showInputDialog("Ingrese usuario");
+                                            String Contraseña = JOptionPane.showInputDialog("Ingrese contraseña");
+                                            ListMaestro.get(i).setTitulo(titulo);
+                                            ListMaestro.get(i).setContraseña(Contraseña);
+                                            ListMaestro.get(i).setMaestria(maestria);
+                                            ListMaestro.get(i).setNombre(nombre);
+                                            ListMaestro.get(i).setSalario(salario);
+
+                                        }
+
+                                    }
+
+                                }
+                                if (cad.equalsIgnoreCase("b")) {
+                                    String p = "";
+                                    for (Maestro a : ListSecciones) {
+                                        for (String q : a.getListClases()) {
+                                            p += ListSecciones.indexOf(q) + "" + ((Maestro) a);
+                                        }
+                                        JOptionPane.showMessageDialog(null, p);
+                                    }
+                                }
+                                if (cad.equalsIgnoreCase("c")) {
+                                    String w = "";
+                                    for (Alumno b : ListAlumno) {
+
+                                        w += ListSecciones.indexOf(b) + "" + ((Alumno) b);
+
+                                    }
+                                    JOptionPane.showMessageDialog(null, w);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+                                }
+                            }
+
+                        }
                     }
                 }
+
             }
+
         }
-
     }
-
 }
