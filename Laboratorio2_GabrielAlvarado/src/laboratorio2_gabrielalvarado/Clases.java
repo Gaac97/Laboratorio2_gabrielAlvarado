@@ -17,7 +17,7 @@ public class Clases {
     public int cantidad;
     public String maestro;
     public int unidades;
-    public ArrayList<String> ListClases = new ArrayList();
+    public ArrayList<Clases> ListClases = new ArrayList();
 
     public Clases() {
     }
@@ -70,11 +70,11 @@ public class Clases {
         this.unidades = unidades;
     }
 
-    public ArrayList<String> getListClases() {
+    public ArrayList<Clases> getListClases() {
         return ListClases;
     }
 
-    public void setListClases(String t) {
+    public void setListClases(Clases t) {
         ListClases.add(t);
     }
 
